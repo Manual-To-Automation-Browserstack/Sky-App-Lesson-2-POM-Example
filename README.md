@@ -1,229 +1,151 @@
 ![Logo](https://www.browserstack.com/images/static/header-logo.jpg)
 
-# BrowserStack Examples Appium WebdriverIO <a href="https://webdriver.io/"><img src="https://avatars.githubusercontent.com/u/72550141?s=48&v=4" alt="WebdriverIO" height="22" /></a> <a href="https://nodejs.org/en/"><img src="https://brandslogos.com/wp-content/uploads/images/large/nodejs-icon-logo.png" alt="nodejs" height="22" /></a> <a href="https://mochajs.org/"><img src="https://brandslogos.com/wp-content/uploads/images/large/mocha-logo.png" alt="mochs" height="22" /></a>
+# Manual To Automation @ SKY - App - Lesson 2 - Simple WebDriverIO Example <a href="https://appium.io/"><img src="https://brandslogos.com/wp-content/uploads/images/large/appium-logo.png" alt="appium" height="22" /></a>
 
 ## Introduction
 
-WebdriverIO is a progressive automation framework built to automate modern web and mobile applications. It simplifies the interaction with your app and provides a set of plugins that help you create a scalable, robust and flakiness test suite.
+This code is a basic example of an Appium script running on BrowserStack against an Android device.
 
-This BrowserStack Example repository demonstrates a WebdriverIO tests framework written in Mocha and nodeJS with parallel testing capabilities. The WebdriverIO test scripts are written for the open source [todo](todo).This BrowserStack Demo Mobile App is an e-commerce mobile application which showcases multiple real-world user scenarios. The app is bundled with offers data, orders data and products data that contains everything you need to start using the app and run tests out-of-the-box.
-
-The WebDriverIO tests are run on different platforms like on-prem and BrowserStack using various run configurations and test capabilities.
+As we are running on BrowserStack, you don't need Appium installed, but you should already have this intstalled. It is also useful for debugging with the use of Appium Inspector.
 
 ---
 
-## Repository setup
+## Installation
 
-- Clone the repository
+There are a few things that you will need before you can get started.
 
-- Ensure you have the following dependencies installed on the machine
-  - NodeJS >= 16.11.1 (includes npm 8.0.0)
+* NodeJS - use [this](https://phoenixnap.com/kb/install-node-js-npm-on-windows) guide for Windows and [this](https://nodesource.com/blog/installing-nodejs-tutorial-mac-os-x/) guide for Mac.
+* Git for pulling down the code - follow [this]() guide for installing Git on all platforms. There are other useful guides on the website mentioned previously. Start [here](https://github.com/git-guides) anad follow through to the various links to learn more about Git. It will be very useful on your automation journey. If you have any issues with tokens or user credentials, let me know as this can trip a lot of people up.
+* Visual Studio Code - You can download VS Code for free from [here](https://code.visualstudio.com/download). This is a very useful tool for writing and running your code as it has auto complete, and powerful debugging capabilities. [This](https://code.visualstudio.com/docs/introvideos/basics) is a handy starting point for how to get started with VS Code.
 
-- Run below command to configure dependencies
+Once you have these installed, you are good to go to the next step.
 
-    ```sh
-    npm install
-    ```
-## About the tests in this repository
+Follow the below steps to get the code onto your local machine.
 
-This repository contains the following WebdriverIO tests:
-| Module   | Test name                          | Description |
-| ---      | ---                                | --- |
-| E2E      | e2e.spec.js                       | This test scenario verifies successful product purchase lifecycle end-to-end. It demonstrates the [Page Object Model design pattern](https://www.browserstack.com/guide/page-object-model-in-selenium) and is also the default test executed in all the single test run profiles. |
-| Login    | login.spec.js                       | This test verifies the login workflow with different types of valid login users. |
-| Login    | login_data_driven.spec.js             | This test verifies the login for all error cases in a datadriven way |
-| Login    | login_requested.spec.js              | This test verifies that the login page is shown when you access the favourites page with being logged in  |
-| Offers   | offers.spec.js                       | This test mocks the GPS location for Singapore and verifies that the product offers applicable for the Singapore location are shown.   |
-| User     | user.spec.js                        | The first test verifies that existing orders are shown for user: "existing_orders_user". The second test verifies if a user can add product to the favourites. |
+* Open a terminal. (Terminal on Mac, Command Prompt on Windows)
+* Go to the directory where you want to place the code using [cd](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/cd) for Windows, and it functions mostly the same for Mac. You just use "cd" but the folder structure on Mac is different (/Users/username/Documents instead of C:/Users/username/Documents)
+* Copy the following command into the terminal, (remember, you must have [Git](https://git-scm.com/downloads) installed)
+```sh
+git clone https://github.com/Manual-To-Automation-Browserstack/Sky-App-Lesson-2-Simple-Framework.git.
+```
+* Move into the directory that you just cloned by typing
+```sh
+cd Sky-App-Lesson-2-Simple-Framework
+```
+* When inside this directory, copy the following command and run it:
+```sh
+npm install
+```
+* Then simply run the below command:
+```sh
+npm run test
+```
 
-## Test infrastructure environments
+This script is useful to get started. You can add more as needed in the "scripts" section of the [package.json](./package.json) file. Once you have added one, you then simply run:
 
-- [On-premise/self-hosted](#on-premise--self-hosted)
-- [BrowserStack](#browserstack)
+```sh
+npm run <insert script name>
+```
 
-## Configuring the maximum parallel test threads for this repository
-
-  For all the parallel run configuration profiles, you can configure the maximum parallel test threads by changing the settings below.
-
-- BrowserStack
-    
-    `resources/conf/wdio-bstack-parallel.conf.js`
-
-    ```js
-    capabilities: [{
-    maxInstances: 5,
-    ...
-    ```
-
-## Test Reporting
-
-- [Allure reports](#generating-allure-reports)
+**NOTE:** As memtioned above, you don't need Appium installed locally to run the tests on BrowserStack but it is recommended you have this installed for future exercises as the Appium Inspector is a very useful tool within Appium for debugging and finding the right locators.
 
 ---
 
-# On Premise / Self Hosted
-
-This infrastructure points to running the tests on your own machine using simulator or connected devices.
-
-## Prerequisites
-
-- For this infrastructure configuration (i.e on-premise), ensure that the app is downloaded and placed in the `/bin` folder.
-<todo add download urls>
-
-## Running Your Tests
-
-### Run a specific test on your own machine
-
-- How to run the test?
-
-  To run the default test scenario (e.g. End to End Scenario) on your own machine, use the following command:
-    ```sh
-  npm run onprem
-  ```
-  To run a specific test scenario, use the following command with the additional 'spec' argument:
-
-  ```sh
-  npm run onprem-suite -- -- spec orders
-  ```
-### Run the entire test suite on your own machine
-
-- How to run the test?
-
-  To run the entire test suite on your own machine, use the following command:
-  ```sh
-  npm run onprem-suite
-  ```
 # BrowserStack
 
 [BrowserStack](https://browserstack.com) provides instant access to 2,000+ real mobile devices and browsers on a highly reliable cloud infrastructure that effortlessly scales as testing needs grow.
 
-## Prerequisites
-- Create a new [BrowserStack account](https://www.browserstack.com/users/sign_up) or use an existing one.
-- Identify your BrowserStack username and access key from the [BrowserStack App Automate Dashboard](https://app-automate.browserstack.com/) and export them as environment variables using the below commands.
+---
 
-   - For \*nix based and Mac machines:
+# Capabilities
 
-      ```sh
-      export BROWSERSTACK_USERNAME=<browserstack-username> &&
-      export BROWSERSTACK_ACCESS_KEY=<browserstack-access-key>
-      ```
+The capabilities that you define are essential to running both on BrowserStack and through Appium. You need to define, at a minimum, the device name, the app url (or custom ID) and your BrowserStack credentials.
 
-   - For Windows:
+The basic outline of the capabilities will look something like the below:
 
-      ```shell
-      set BROWSERSTACK_USERNAME=<browserstack-username>
-      set BROWSERSTACK_ACCESS_KEY=<browserstack-access-key>
-      ```
-Alternatively, you can also hardcode username and access_key objects in the [wdio*.conf.js](resources/conf/) files.
+```js
+# Android
+capabilities = [
+  'browserstack.user' : process.env.BROWSERSTACK_USERNAME,
+  'browserstack.key' : process.env.BROWSERSTACK_ACCESS_KEY,
+  'build' : 'Sky - First App Automate Test',
+  'name': 'First Test - Sky - Android',
+  'device' : 'Samsung Galaxy S22',
+  'app' : 'My_Sky_App_Android' || '<app_url>',
+  'browserstack.debug' : true,
+  'platformName': 'android'
+]
 
-> Note:
-> - We have configured the capabilities in [wdio*.conf.js](resources/conf) files. You can certainly update them based on your device test requirements.
-> - The exact test capability values can be easily identified using the [Browserstack Capability Generator](https://browserstack.com/app-automate/capabilities)
+# iOS
+capabilities = [
+  'browserstack.user' : process.env.BROWSERSTACK_USERNAME,
+  'browserstack.key' : process.env.BROWSERSTACK_ACCESS_KEY,
+  'build' : 'Sky - First App Automate Test',
+  'name': 'First Test - Sky - iOS',
+  'device' : 'iPhone 13',
+  'app' : 'My_Sky_App_iOS' || '<app_url>',
+  'browserstack.debug' : true,
+  'platformName': 'ios'
+]
 
-## Running Your Tests on BrowserStack
 
-### Prerequisites
-
-You need to upload the `APK` or `IPA` to BrowserStack, before you can run the test on BrowserStack. BrowserStack will provide you with an `app_url` which you need to use.
-
-You can upload the `APK` or `IPA` using a file on your filesystem or using a public url.
-
-cURL command: 
-``` shell
-curl -u "browserstack_username:browserstack_access_key" \
--X POST "https://api-cloud.browserstack.com/app-automate/upload" \
--F "file=@/path/to/ipa/or/apk" \
--F "custom_id=BrowserStackDemoApp"
 ```
 
-More information on [Upload apps from filesystem](https://www.browserstack.com/docs/app-automate/appium/upload-app-from-filesystem), [Upload apps using public URL](https://www.browserstack.com/docs/app-automate/appium/upload-app-using-public-url) or [Define custom ID for app](https://www.browserstack.com/docs/app-automate/appium/upload-app-define-custom-id).
+See the process for adding the environment variables below.
 
-### Run a specific test on BrowserStack
+---
 
-In this section, we will run a single test on an Android device on Browserstack. To change test capabilities for this configuration, please refer to the `capabilities` object in `resources/conf/wdio-bstack-single.conf.js` file.
+# Uploading your app to BrowserStack
 
-- How to run the test?
+First and foremost, there is a handy guide on the BrowserStack website [here](https://www.browserstack.com/docs/app-automate/api-reference/appium/apps#upload-an-app) that can be referenced. The basic method of uploading an app is using the REST api. Below is an example of an App upload using this api:
 
-   - To run the default test scenario (e.g. End to End Scenario) on a BrowserStack device, use the following command:
-      ```sh
-      npm run bstack-single
-      ```
-  - To run a specific test scenario, use the following command with the additional 'spec' argument:
-    ```sh
-    npm run bstack-suite -- -- spec orders
-    ```
+```sh
+curl -u "<browserstack_username>:<browserstack_access_key>" \
+-X POST "https://api-cloud.browserstack.com/app-automate/upload" \
+-F "file=@/path/to/app/file/application-debug.apk" \
+-F "custom_id=SampleApp"
+```
 
-### Run the entire test suite in parallel on a single BrowserStack device
+You can use a local file path as in the above example or a public facing URL as in the below example:
 
-In this section, we will run the tests in parallel on a single device on Browserstack. Refer to `capabilities` object in `resources/conf/wdio-bstack-parallel.conf.js` file to change test capabilities for this configuration.
+```sh
+curl -u "<browserstack_username>:<browserstack_access_key>" \
+-X POST "https://api-cloud.browserstack.com/app-automate/upload" \
+-F "url=https://www.browserstack.com/app-automate/sample-apps/android/WikipediaSample.apk"
+```
 
-- How to run the test?
+You will receive a response similar to this:
 
-  - To run the entire test suite in parallel on a single BrowserStack device type, use the following command:
-    ```sh
-    npm run bstack-parallel
-    ```
-> Note: By default, this execution would run maximum 2 test threads in parallel on BrowserStack. The parallels can eb modified by updated the `maxInstances` inside `capabilities` object in `resources/conf/wdio-bstack-parallel.conf.js`.
+```sh
+{
+    "app_url": "bs://c8ddcb5649a8280ca800075bfd8f151115bba6b3",
+    "custom_id": "SampleApp",
+    "shareable_id": "steve/SampleApp"
+}
 
-### Run the entire test suite in parallel on multiple BrowserStack devices
+```
 
-In this section, we will run the tests in parallel on multiple devices on Browserstack. Refer to the `capabilities` object in `resources/conf/wdio-bstack-parallel-devices.conf.js` file to change test capabilities for this configuration.
+The "custom id" can be used for multiple app uploads to prevent frequent changes to your capabilities. It is typically used with apps that are being updated on a consistent basis to fix bugs and add new features.
 
-- How to run the test?
+---
 
-  - To run the entire test suite in parallel on multiple BrowserStack devices, use the following command:
-    ```sh
-    npm run bstack-parallel-devices
-    ```
-### Mobile application using local or internal environment - Running your tests on BrowserStack using BrowserStackLocal
+## Prerequisites
 
-#### Prerequisites
+* Create a new [BrowserStack account](https://www.browserstack.com/users/sign_up) or use an existing one.
+* Identify your BrowserStack username and access key from the [BrowserStack App Automate Dashboard](https://app-automate.browserstack.com/) and export them as environment variables using the below commands.
 
-- Clone the [BrowserStack demo application](https://github.com/browserstack/browserstack-demo-app) repository.
+    - For \*nix based and Mac machines:
+
   ```sh
-  git clone https://github.com/browserstack/browserstack-demo-app
-  ``` 
-- Please follow the README.md on the BrowserStack demo application repository to install and start the dev server on localhost.
-- We will change the response of the `signin` (for the `locked_user`) API endpoint. (File to change: `pages/api/signin.js` line `43`)
-  - The API endpoint respond with a specific error, `Your account has been locked.`.
-  - We will change that to something generic, like: `Something went wrong.`
-- In this section, we will run a single test case that changes the API used in BrowserStack Demo app, in a wat that it interact with you local machine. Refer to the `capabilities` object in `resources/conf/wdio-bstack-local.conf.js` file to change test capabilities for this configuration.
-- Note: You may need to provide additional BrowserStackLocal arguments to successfully connect your localhost environment with BrowserStack infrastructure. (e.g if you are behind firewalls, proxy or VPN).
-- Further details for successfully creating a BrowserStackLocal connection can be found here:
+  export BROWSERSTACK_USERNAME=<browserstack-username> &&
+  export BROWSERSTACK_ACCESS_KEY=<browserstack-access-key>
+  ```
 
-   - [Local Testing with App Automate](https://www.browserstack.com/local-testing/app-automate)
-   - [BrowserStackLocal Java GitHub](https://github.com/browserstack/browserstack-local-java)
+    - For Windows:
 
-### Mobile application using local or internal environment - Run a specific test on BrowserStack using BrowserStackLocal
-
-- How to run the test?
-
-   - To run the default test scenario (e.g. End to End Scenario) on a single BrowserStack device using BrowserStackLocal, use the following command:
-      ```sh
-      npm run bstack-local
-      ```
-### Mobile application using local or internal environment - Run the entire test suite in parallel on multiple BrowserStack devices using BrowserStackLocal
-
-In this section, we will run the test cases on a mobile application using a local or internal environment in parallel on multiple devices on Browserstack. Refer to the `capabilities` object in `resources/conf/wdio-bstack-local-parallel-devices.conf.js` file to change test capabilities for this configuration.
-
-- How to run the test?
-
-  - To run the entire test suite in parallel on multiple BrowserStack devices using BrowserStackLocal, use the following command:
-    ```sh
-    npm run bstack-local-parallel-devices
-    ```
-## Generating Allure Reports
-
-- Generate Report using the following command: 
-    ```
-    npm run generate-report
-    ```
-## Additional Resources
-
-- View your test results on the [BrowserStack App Automate Dashboard](https://www.browserstack.com/app-automate)
-- Documentation for writing [App Automate test scripts in JS](https://www.browserstack.com/docs/app-automate/appium/getting-started/nodejs/webdriverio)
-- Customizing your tests capabilities on BrowserStack using our [test capability generator](https://www.browserstack.com/app-automate/capabilities)
-- [List of Browsers & mobile devices](https://www.browserstack.com/list-of-browsers-and-platforms?product=automate) for automation testing on BrowserStack
-- [Using Automate REST API](https://www.browserstack.com/automate/rest-api) to access information about your tests via the command-line interface
-- Understand how many parallel sessions you need by using our [Parallel Test Calculator](https://www.browserstack.com/app-automate/parallel-calculator?ref=github)
-- For testing public web applications behind IP restriction, [Inbound IP Whitelisting](https://www.browserstack.com/local-testing/inbound-ip-whitelisting) can be enabled with the [BrowserStack Enterprise](https://www.browserstack.com/enterprise) offering
+  ```shell
+  set BROWSERSTACK_USERNAME=<browserstack-username>
+  set BROWSERSTACK_ACCESS_KEY=<browserstack-access-key>
+  ```
+  
+  Alternatively, you can also hardcode username and access_key objects in the code but this is **NOT** recommended.
