@@ -1,10 +1,10 @@
 ![Logo](https://www.browserstack.com/images/static/header-logo.jpg)
 
-# Manual To Automation @ SKY - App - Lesson 2 - Simple WebDriverIO Example <a href="https://appium.io/"><img src="https://brandslogos.com/wp-content/uploads/images/large/appium-logo.png" alt="appium" height="22" /></a>
+# Manual To Automation @ SKY - App - Lesson 2 - WebDriverIO Appium POM Example <a href="https://appium.io/"><img src="https://brandslogos.com/wp-content/uploads/images/large/appium-logo.png" alt="appium" height="22" /></a>
 
 ## Introduction
 
-This code is a basic example of an Appium script running on BrowserStack against an Android device.
+This code is an example of a WebDriverIO Appium framework running on BrowserStack against a real mobile device.
 
 As we are running on BrowserStack, you don't need Appium installed, but you should already have this intstalled. It is also useful for debugging with the use of Appium Inspector.
 
@@ -26,7 +26,7 @@ Follow the below steps to get the code onto your local machine.
 * Go to the directory where you want to place the code using [cd](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/cd) for Windows, and it functions mostly the same for Mac. You just use "cd" but the folder structure on Mac is different (/Users/username/Documents instead of C:/Users/username/Documents)
 * Copy the following command into the terminal, (remember, you must have [Git](https://git-scm.com/downloads) installed)
 ```sh
-git clone https://github.com/Manual-To-Automation-Browserstack/Sky-App-Lesson-2-Simple-Framework.git.
+git clone https://github.com/Manual-To-Automation-Browserstack/Sky-App-Lesson-2-POM-Example.git.
 ```
 * Move into the directory that you just cloned by typing
 ```sh
@@ -38,10 +38,10 @@ npm install
 ```
 * Then simply run the below command:
 ```sh
-npm run test
+npm run bstack-single
 ```
 
-This script is useful to get started. You can add more as needed in the "scripts" section of the [package.json](./package.json) file. Once you have added one, you then simply run:
+This script is useful to get started. You will find the others listed in the "scripts" section of the [package.json](./package.json) file. You can also add more as needed. You simply run:
 
 ```sh
 npm run <insert script name>
